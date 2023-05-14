@@ -9,9 +9,6 @@ const schema = mongoose.Schema({
     type: Date,
     Date: Date.now(),
   },
-  bill_no: {
-    type: String,
-  },
   products: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",

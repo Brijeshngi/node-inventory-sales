@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const schema = mongoose.Schema({
-  name: {
+  packing_type: {
+    type: String,
+    required: true,
+  },
+  packing_quantity: {
     type: String,
     required: true,
   },
