@@ -35,6 +35,42 @@ const schema = mongoose.Schema({
     type: Date,
     Date: Date.now(),
   },
+
+  ResetPasswordToken: String,
+  ResetPasswordExpire: String,
 });
+
+schema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+schema.methods.getJWTToken = function () {
+  return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: "15d",
+  });
+};
+
+schema.methods.comparePassword = async function (password) {
+  return await bcrypt.compare(password, this.password);
+};
+
+// for testing on console that generates resetToken
+
+// console.log("password", crypto.randomBytes(20).toString("hex"));
+
+schema.methods.getResetToken = function () {
+  const resetToken = crypto.randomBytes(20).toString("hex");
+
+  this.ResetPasswordToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  this.ResetPasswordExpire = Date.now() + 15 * 60 * 1000;
+
+  return resetToken;
+};
 
 export const Admin = mongoose.model("Admin", schema);
