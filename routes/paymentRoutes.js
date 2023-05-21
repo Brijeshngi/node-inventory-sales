@@ -1,8 +1,16 @@
 import express from "express";
-import { pay } from "../controllers/paymentController";
+import {
+  checkout,
+  getRazorpayKey,
+  paymentVerification,
+} from "../controllers/paymentController.js";
 
 const router = express.Router();
 
-router.route("/pay").post(pay);
+router.route("/checkout").post(checkout);
+
+router.route("/paymentverification").post(paymentVerification);
+
+router.route("/apikey").get(getRazorpayKey);
 
 export default router;

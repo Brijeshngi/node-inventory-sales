@@ -13,7 +13,7 @@ const schema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
   },
-  Deal: {
+  deal: {
     type: String,
   },
   quantity: {
@@ -66,6 +66,10 @@ const schema = mongoose.Schema({
   },
   note: {
     type: String,
+  },
+  status: {
+    type: String,
+    enum: ["Confirm", "Cancelled"],
   },
   createdAt: {
     type: Date,

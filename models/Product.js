@@ -55,7 +55,7 @@ const schema = mongoose.Schema({
   net: {
     type: String,
   },
-  purchase_details: {},
+  // purchase_details: {},
 });
 
 export const Product = mongoose.model("Product", schema);

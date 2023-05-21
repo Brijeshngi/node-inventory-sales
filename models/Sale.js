@@ -13,9 +13,6 @@ const schema = mongoose.Schema({
     type: String,
     // order_value
   },
-  sale_of_the_day: {
-    type: String,
-  },
   createdAt: {
     type: Date,
     Date: Date.now(),

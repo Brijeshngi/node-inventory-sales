@@ -17,32 +17,8 @@ const schema = mongoose.Schema({
     required: true,
     minlength: [10, "Required 10 characters only"],
   },
-  DL: {
-    type: String,
-    required: true,
-  },
-  Food_License: {
-    type: String,
-    required: true,
-  },
-  address: {
-    type: String,
-    required: true,
-  },
-  city: {
-    type: String,
-    required: true,
-  },
-  PIN: {
-    type: String,
-    required: true,
-  },
   Firm_name: {
-    type: String,
-    required: true,
-  },
-  GSTIN: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   customer_type: {
@@ -52,11 +28,9 @@ const schema = mongoose.Schema({
   },
   Credit_limit: {
     type: String,
-    required: true,
   },
   rewards: {
     type: String,
-    required: true,
   },
   bills: [
     {
